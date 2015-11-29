@@ -9,7 +9,7 @@ var test = function () {
   $(document).mousedown(function(e) {      // вызывается по клику мышью
     if (e.button == 0) {                   // клик левой клавишей мыши?
        s.selectAll("path").animate({"opacity": "0"}, 500);
-       tiker("Льюис Кэрролл. Аня в стране чудес.txt", s);
+       tiker("text.txt", s);
     }
   });
 };
