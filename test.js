@@ -11,6 +11,7 @@ var test = function () {
        s.selectAll("path").animate({"opacity": "0"}, 500);
        tiker("Льюис Кэрролл. Аня в стране чудес.txt", s);
     }
+  });
 };
 
 var tiker = function (file, s) {                // генерирует бегущую строку для потокового шифра из файла 
