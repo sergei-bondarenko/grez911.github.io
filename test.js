@@ -1,5 +1,5 @@
 var test = function () {
-  var pagecontent = "<svg id=\"drawsvg\"></svg>";
+  var pagecontent = "<div id=\"drawbox\"><svg id=\"drawsvg\"></svg></div>";
   $("body").append(pagecontent);
   s = Snap("#drawsvg");                     // создаём холст
   s.attr({viewBox: "0 0 500 500", width: "100%", height: "100%"});
