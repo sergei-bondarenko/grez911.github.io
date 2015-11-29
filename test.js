@@ -24,11 +24,11 @@ var tiker = function (file, s) {                // генерирует бегу
         allText = allText.replace(/(?:\r\n|\r|\n)/g, " "); // заменяем все переносы строк на пробелы
         allText = allText.replace(/ +(?= )/g, "");         // убираем несколько пробелов подряд
         var text = "                         ";            // текст
-        intervals.push(setInterval(function(){             // дописывает один символ
+        setInterval(function(){                            // дописывает один символ
           $("#tspan2988").text(openText);                  // выводим на экран текст
           openText = openText.substring(1) + allText[0];   // сдвигаем влево строку с открытым текстом и дописываем один символ из allText
           allText = allText.substring(1);                  // обрезаем самый левый символ у allText
-        }, 150));
+        }, 150);
       }
     }
   }
