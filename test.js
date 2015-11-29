@@ -25,8 +25,8 @@ var tiker = function (file, s) {                // генерирует бегу
         allText = allText.replace(/ +(?= )/g, "");         // убираем несколько пробелов подряд
         var text = "                         ";            // текст
         setInterval(function(){                            // дописывает один символ
-          $("#tspan2988").text(openText);                  // выводим на экран текст
-          openText = openText.substring(1) + allText[0];   // сдвигаем влево строку с открытым текстом и дописываем один символ из allText
+          $("#tspan2988").text(text);                      // выводим на экран текст
+          text = text.substring(1) + allText[0];           // сдвигаем влево строку с открытым текстом и дописываем один символ из allText
           allText = allText.substring(1);                  // обрезаем самый левый символ у allText
         }, 150);
       }
