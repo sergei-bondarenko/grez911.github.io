@@ -1,5 +1,6 @@
 var test = function () {
   var pagecontent = "<div id=\"drawbox\"><svg id=\"drawsvg\"></svg></div>";
+  var click = false;
   $("body").append(pagecontent);
   s = Snap("#drawsvg");                     // создаём холст
   s.attr({viewBox: "0 0 500 500", width: "100%", height: "100%"});
@@ -8,8 +9,11 @@ var test = function () {
   });
   $(document).mousedown(function(e) {      // вызывается по клику мышью
     if (e.button == 0) {                   // клик левой клавишей мыши?
-       s.selectAll("path").animate({"opacity": "0"}, 500);
-       tiker("text.txt", s);
+      if (!click) { 
+        click = true;
+        s.selectAll("path").animate({"opacity": "0"}, 500);
+        tiker("text.txt", s);
+      }
     }
   });
 };
