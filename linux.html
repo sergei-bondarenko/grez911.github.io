@@ -7,13 +7,40 @@
   <body>
 <pre>
 <b>Contents:</b>
+
+<a href="#1">1. How to use terminal?</a>
+<a href="#2">2. How to use vi (vim)?</a>
+<a href="#3">3. How to see command history?</a>
+<a href="#4">4. How to measure size of files/folders?</a>
+<a href="#5">5. How to see open ports?</a>
+<a href="#6">6. Where I can write aliases for bash commands?</a>
+<a href="#7">7. How to delete user?</a>
+<a href="#8">8. How to extract/compress files?</a>
+<a href="#9">9. How to write bash script?</a>
+<a href="#10">10. How to debug process?</a>
+<a href="#11">11. How to transfer files via ssh?</a>
+<a href="#12">12. How to see how much free space I have?</a>
+<a href="#13">13. How to delete all files in current directory if there are more than
+    1024 files? ("-bash: /bin/rm: Argument list too long" error)</a>
+<a href="#14">14. How to see OS version?</a>
+<a href="#15">15. How to see cron tasks for user?</a>
+<a href="#16">16. How to generate passwords?</a>
+<a href="#17">17. How to find?</a>
+<a href="#18">18. How to replace pattern in files?</a>
+<a href="#19">19. How to measure server response time?</a>
+<a href="#20">20. How to import database in MySQL?</a>
+<a href="#21">21. How to log out from GNOME?</a>
+<a href="#22">22. How to adjust the brightness?</a>
+
 <a href="#11">11. How to transfer files via ssh?</a>
 
-<b>1. How to copy/paste in a terminal?</b>
+<b>1. How to use terminal?</b><a name="1"></a>
 
-CTRL+SHIFT+C/V
+CTRL+ALT+T     -- new terminal
+CRTL+SHIFT+T   -- new tab
+CTRL+SHIFT+C/V -- copy/paste
 
-<b>2. How to use vi (vim)?</b>
+<b>2. How to use vi (vim)?</b><a name="2"></a>
 
 i      -- edit mode
 o      -- edit mode + new line
@@ -33,32 +60,32 @@ v      -- select with keyboard
 d      -- delete block selected with keyboard
 ggVG   -- select all file
 
-<b>3. How to see command history?</b>
+<b>3. How to see command history?</b><a name="3"></a>
 
 history -- loads last executed commands from ~/.bash_history
 CTRL+r  -- search command in history
 
-<b>4. How to measure size of files/folders?</b>
+<b>4. How to measure size of files/folders?</b><a name="4"></a>
 
 du -hs   -- summary size of current folder
 du -hs * -- size of files and folders in a current directory
 ncdu     -- convinient program for measurement of size folder and files.
             Probably not installed by default. Download it from repos.
 
-<b>5. How to see open ports?</b>
+<b>5. How to see open ports?</b><a name="5"></a>
 
 netstat -tnlp
 
-<b>6. Where I can write aliases for bash commands?</b>
+<b>6. Where I can write aliases for bash commands?</b><a name="6"></a>
 
 ~/.bashrc
 
-<b>7. How to delete user?</b>
+<b>7. How to delete user?</b><a name="7"></a>
 
 userdel user_name
 userdel -rf user_name -- delete with his home directory
 
-<b>8. How to extract/compress files?</b>
+<b>8. How to extract/compress files?</b><a name="8"></a>
 
 tar xjvf archive.tar.bz2 -- extract bz2 archive
 tar xzvf archive.tar.gz  -- extract gz archive
@@ -67,13 +94,21 @@ tar czvf archive.tar.gz file1 file2 file3 -- put many files into one
                                              archive
 gunzip archive.zip -- extract zip archive
 
-<b>9. How to write bash script?</b>
+<b>9. How to write bash script?</b><a name="9"></a>
 
 Put "#!/bin/bash" as the first string (without quotes), write commands on
 the next lines.
 Write "set -x" where you want to enable debug.
+Save it with ".sh" extension. And set executable flag for file. Now you can
+run it simply by entering path to this file:
 
-<b>10. How to debug process?</b>
+/some/folder/with/scripts/script.sh
+
+or
+
+./script.sh -- if you in the folder /some/folder/with/scripts/ now
+
+<b>10. How to debug process?</b><a name="10"></a>
 
 strace -P process_id
 
@@ -83,53 +118,53 @@ scp user_name@server_ip:/files/for/download/ /where/to/download/
 rsync -avPz -e "ssh -p 22" --numeric-ids user_name@server_ip:/from/ /where/
 mc -- use Midnight Commander
 
-<b>12. How to see how much free space I have?</b>
+<b>12. How to see how much free space I have?</b><a name="12"></a>
 
 df -h
 
-<b>13. How to delete all files in current directory if there are more than
+<b>13. How to delete all files in current directory if there are more than<a name="13"></a>
     1024 files? ("-bash: /bin/rm: Argument list too long" error)</b>
 
 find . | xargs rm
 
-<b>14. How to see OS version?</b>
+<b>14. How to see OS version?</b><a name="14"></a>
 
 lsb_release -a
 
-<b>15. How to see cron tasks for user?</b>
+<b>15. How to see cron tasks for user?</b><a name="15"></a>
 
 crontab -l -u user_name
 
-<b>16. How to generate passwords?</b>
+<b>16. How to generate passwords?</b><a name="16"></a>
 
 apg -MCLN -m 12  -- where 12 is desired length
 apg -MCLNS -m 12 -- with special characters
 
-<b>17. How to find?</b>
+<b>17. How to find?</b><a name="17"></a>
 
 grep -r pattern * -- find pattern in files
 find ./ -name "file*.txt" -- find by filename
 
-<b>18. How to replace pattern in files?</b>
+<b>18. How to replace pattern in files?</b><a name="18"></a>
 
 sed -i -e 's/one/two/' file.txt -- replace all occurrences of "one" to
                                    "two" in the file.txt
 find ./ -type f -exec sed -i -e 's/one/two/g' {} \; -- replace recursively
                                                        in all files
 
-<b>19. How to measure server response time?</b>
+<b>19. How to measure server response time?</b><a name="19"></a>
 
 curl -o /dev/null -s -w %{time_total}\\n http://example.com/
 
-<b>20. How to import database in MySQL?</b>
+<b>20. How to import database in MySQL?</b><a name="20"></a>
 
 mysql -u user_name -ppassword_here db_name &lt; db_name.sql
 
-<b>21. How to log out from GNOME?</b>
+<b>21. How to log out from GNOME?</b><a name="21"></a>
 
 gnome-session-quit
 
-<b>22. How to adjust brightness?</b>
+<b>22. How to adjust the brightness?</b><a name="22"></a>
 
 echo "50" > /sys/class/backlight/radeon_bl0/brightness -- where "50" is
     desired level (0..255); probably you have to replace "radeon_bl0" by
