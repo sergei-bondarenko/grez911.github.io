@@ -33,7 +33,88 @@ ggVG   -- select all file
 3. How to see command history?
 
 history -- loads last executed commands from ~/.bash_history
-CTRL+r  -- search command
+CTRL+r  -- search command in history
+
+4. How to measure size of files/folders?
+
+du -hs   -- summary size of current folder
+du -hs * -- size of files and folders in a current directory
+ncdu     -- convinient program for measurement of size folder and files.
+            Probably not installed by default. Download it from repos.
+
+5. How to see open ports?
+
+netstat -tnlp
+
+6. Where I can write aliases for bash commands?
+
+~/.bashrc
+
+7. How to delete user?
+
+userdel user_name
+userdel -rf user_name -- delete with his home directory
+
+8. How to extract/compress files?
+
+tar xjvf archive.tar.bz2 -- extract bz2 archive
+tar xzvf archive.tar.gz  -- extract gz archive
+tar czvf archive.tar.gz dir_name -- put dir_name into archive
+tar czvf archive.tar.gz file1 file2 file3 -- put many files into one
+                                             archive
+gunzip archive.zip -- extract zip archive
+
+9. How to write bash script?
+
+Put "#!/bin/bash" as the first string (without quotes), write commands on
+the next lines.
+Write "set -x" where you want to enable debug.
+
+10. How to debug process?
+
+strace -P process_id
+
+11. How to transfer files via ssh?
+
+scp user_name@server_ip:/files/for/download/ /where/to/download/
+rsync -avPz -e "ssh -p 22" --numeric-ids user_name@server_ip:/from/ /where/
+
+12. How to see how much free space I have?
+
+df -h
+
+13. How to delete all files in current directory if there are more than
+    1024 files? ("-bash: /bin/rm: Argument list too long" error)
+
+find . | xargs rm
+
+14. How to see OS version?
+
+lsb_release -a
+
+15. How to see cron tasks for user?
+
+crontab -l -u user_name
+
+16. How to generate passwords?
+
+apg -MCLN -m 12  -- where 12 is desired length
+apg -MCLNS -m 12 -- with special characters
+
+17. How to find pattern in files?
+
+grep -r pattern *
+
+18. How to replace pattern in files?
+
+sed -i -e 's/one/two/' file.txt -- replace all occurrences of "one" to
+                                   "two" in the file.txt
+find ./ -type f -exec sed -i -e 's/one/two/g' {} \; -- replace recurcively
+                                                       in all files
+
+19. How to measure server response time?
+
+curl -o /dev/null -s -w %{time_total}\\n http://example.com/
 </pre>
   </body>
 </html>
