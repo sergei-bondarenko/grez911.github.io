@@ -6,6 +6,9 @@
   </head>
   <body>
 <pre>
+<b>Contents:</b>
+<a href="#11">11. How to transfer files via ssh?</a>
+
 <b>1. How to copy/paste in a terminal?</b>
 
 CTRL+SHIFT+C/V
@@ -74,10 +77,11 @@ Write "set -x" where you want to enable debug.
 
 strace -P process_id
 
-<b>11. How to transfer files via ssh?</b>
+<b>11. How to transfer files via ssh?</b><a name="11"></a>
 
 scp user_name@server_ip:/files/for/download/ /where/to/download/
 rsync -avPz -e "ssh -p 22" --numeric-ids user_name@server_ip:/from/ /where/
+mc -- use Midnight Commander
 
 <b>12. How to see how much free space I have?</b>
 
@@ -124,6 +128,12 @@ mysql -u user_name -ppassword_here db_name &lt; db_name.sql
 <b>21. How to log out from GNOME?</b>
 
 gnome-session-quit
+
+<b>22. How to adjust brightness?</b>
+
+echo "50" > /sys/class/backlight/radeon_bl0/brightness -- where "50" is
+    desired level (0..255); probably you have to replace "radeon_bl0" by
+    your videocard name 
 </pre>
   </body>
 </html>
