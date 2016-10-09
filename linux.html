@@ -101,20 +101,25 @@ crontab -l -u user_name
 apg -MCLN -m 12  -- where 12 is desired length
 apg -MCLNS -m 12 -- with special characters
 
-<b>17. How to find pattern in files?</b>
+<b>17. How to find?</b>
 
-grep -r pattern *
+grep -r pattern * -- find pattern in files
+find ./ -name "file*.txt" -- find by filename
 
 <b>18. How to replace pattern in files?</b>
 
 sed -i -e 's/one/two/' file.txt -- replace all occurrences of "one" to
                                    "two" in the file.txt
-find ./ -type f -exec sed -i -e 's/one/two/g' {} \; -- replace recurcively
+find ./ -type f -exec sed -i -e 's/one/two/g' {} \; -- replace recursively
                                                        in all files
 
 <b>19. How to measure server response time?</b>
 
 curl -o /dev/null -s -w %{time_total}\\n http://example.com/
+
+<b>20. How to import database in MySQL?</b>
+
+mysql -u user_name -ppassword_here db_name &lt; db_name.sql
 </pre>
   </body>
 </html>
