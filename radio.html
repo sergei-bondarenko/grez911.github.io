@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="GNU, Linux, Debian, Jessie, 8, Airtime, Icecast, Apache">
+    <meta name="description" content="Setting up an internet radio station on Debian Jessie with Airtime and Icecast 2.">
+    <title>Creating an internet radio station.</title>
+  </head>
+  <body>
+<pre>
+<b>Creating an internet radio station on Debian 8 with Airtime and Icecast 2.</b>
+
+<b>Prerequisites:</b>
+1. System with at least 512 MB RAM, 1 GHz CPU, 10 Gb free disk space;
+2. Clean Debian 8.6 installation (from netinstall amd64 iso, with only ssh
+   server and standard system utilities, of course without desktop
+   environment);
+3. One available IP address;
+4. Domain names "copypasta.fm" and "airtime.copypasta.fm" (I will use
+   these domains) pointing to this IP address (for testing you can use
+   local ip address and appropriate records in the hosts file).
+
+<b>Installation</b>
+
+As you <a href="https://sourcefabric.booktype.pro/airtime-25-for-broadcasters/preparing-the-server/">can see</a>: "The recommended Airtime server platform is Debian 7.2
+'wheezy'". But actually you can install Airtime on Debian 8.6 'Jessie', I
+will show you how.
+
+1. Open /etc/apt/sources.list and append this:
+
+deb http://apt.sourcefabric.org/ wheezy main
+
+2. apt-get update
+You will see this error: "W: GPG error: http://apt.sourcefabric.org wheezy
+InRelease: The following signatures couldn't be verified because the public
+key is not available: NO_PUBKEY 0888FE5B174C1854". We will fix this.
+
+3. apt-get install sourcefabric-keyring 
+On question "Install these packages without verification? [y/N]" type "y"
+and press Enter.
+
+4. apt-get update
+Update your computer's software sources again.
+
+5. apt-get install gdebi
+
+6. wget https://grez911.github.io/files/mp3gain_1.5.2-r2-6_amd64.deb
+
+7. gdebi 
+</pre>
+  </body>
+</html>
