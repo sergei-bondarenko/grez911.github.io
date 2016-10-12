@@ -122,25 +122,6 @@ After this you probably want to create your radio station main page. Create
 a new config for Apache /etc/apache2/sites-available/copypasta.fm.conf
 Write in this file the following:
 
-&lt;VirtualHost *:443&gt;
-      SSLEngine on
-      SSLProtocol all -SSLv2
-      SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem
-      SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
-      Header always set Strict-Transport-Security "max-age=31536000"
-
-      ServerName copypasta.fm
-      ServerAlias www.copypasta.fm
-
-      DocumentRoot /home/user/www/
-      DirectoryIndex index.php
-
-      &lt;Directory /home/user/www&gt;
-              AllowOverride all
-              Require all granted
-      &lt;/Directory&gt;
-&lt;/VirtualHost&gt;
-
 &lt;VirtualHost *:80&gt;
       ServerName copypasta.fm
       ServerAlias www.copypasta.fm
@@ -179,6 +160,74 @@ Reload Apache:
 killall -HUP apache2
 
 Now you can listen to your radio at http://copypasta.fm/
+
+If you want that your stream also be available at the port 443 and be
+encrypted, i.e. https://copypasta.fm/airtime_128, than do the following:
+
+1. a2enmod proxy_http
+
+2. Open /etc/apache2/sites-enabled/copypasta.fm.conf, delete all and write
+   this:
+
+&lt;VirtualHost *:443&gt;
+      SSLEngine on
+      SSLProtocol all -SSLv2
+      SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem
+      SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+      Header always set Strict-Transport-Security "max-age=31536000"
+
+      ServerName copypasta.fm
+      ServerAlias www.copypasta.fm
+
+      DocumentRoot /home/user/www/
+      DirectoryIndex index.php
+
+      &lt;Directory /home/user/www&gt;
+              AllowOverride all
+              Require all granted
+      &lt;/Directory&gt;
+
+      ProxyPass /airtime_128 http://127.0.0.1:8000/airtime_128
+      ProxyPassReverse /airtime_128 http://127.0.0.1:8000/airtime_128
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost *:80&gt;
+      ServerName copypasta.fm
+      ServerAlias www.copypasta.fm
+
+      DocumentRoot /home/user/www/
+      DirectoryIndex index.php
+
+      &lt;Directory /home/user/www>
+              AllowOverride all
+              Require all granted
+      &lt;/Directory&gt;
+
+      Redirect permanent / https://copypasta.fm/
+&lt;/VirtualHost&gt;
+
+3. Restart Apache:
+
+   killall -HUP apache2
+
+4. Open /home/user/www/index.php and replace all content with this:
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;copypasta.fm&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;audio controls&gt;
+      &lt;source src="https://copypasta.fm/airtime_128" type="audio/ogg"&gt;
+      Your browser does not support the audio element.
+    &lt;/audio&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+Now you can listen your radio at https://copypasta.fm/ without error about
+mixed encrypted and unencrypted content. Your stream will be available at
+https://copypasta.fm/airtime_128 and http://copypasta.fm:8000/airtime_128
 </pre>
   </body>
 </html>
