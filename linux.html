@@ -36,9 +36,9 @@
 
 <b>1. How to use terminal?</b><a name="1"></a>
 
-CTRL+ALT+T     -- new terminal
-CRTL+SHIFT+T   -- new tab
-CTRL+SHIFT+C/V -- copy/paste
+ctrl+alt+t     -- new terminal
+ctrl+shift+t   -- new tab
+ctrl+shift+c/v -- copy/paste
 
 <b>2. How to use vi (vim)?</b><a name="2"></a>
 
@@ -53,7 +53,7 @@ esc    -- command mode
 /foo   -- find "foo" in the file; press "n" to go to the next
 dd     -- delete line
 u      -- undo
-CTRL+r -- redo
+ctrl+r -- redo
 G      -- jump to the end of file
 gg     -- jump to the top of file
 v      -- select with keyboard
@@ -63,7 +63,8 @@ ggVG   -- select all file
 <b>3. How to see command history?</b><a name="3"></a>
 
 history -- loads last executed commands from ~/.bash_history
-CTRL+r  -- search command in history
+crtl+r  -- search command in history (press it multiple times to jump to
+           the next result)
 
 <b>4. How to measure size of files/folders?</b><a name="4"></a>
 
@@ -175,12 +176,12 @@ echo "50" > /sys/class/backlight/radeon_bl0/brightness -- where "50" is
 <a href="files/screen.mp4">Here</a> is a short video about this program in action. A small cheatlist:
 
 screen       -- enter into the screen
-CTRL+A C     -- the new screen window
-CTRL+A N     -- switch between windows
-CTRL+A D     -- detach from the screen
+ctrl+a c     -- the new screen window
+ctrl+a n     -- switch between windows
+ctrl+a d     -- detach from the screen
 screen -r    -- reattach to the screen
-screen -list -- show all running screens
-CTRL+A :quit -- close the screen
+screen -list -- list all running screens
+ctrl+a :quit -- close the screen
 </pre>
   </body>
 </html>
