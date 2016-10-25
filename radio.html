@@ -10,7 +10,12 @@
 <pre>
 <b>Creating an internet radio station on Debian 8 with Airtime and Icecast 2.</b>
 
-<b>Prerequisites:</b>
+<b>Contents:</b>
+1.  <a href="#1">Prerequisites</a>
+2.  <a href="#2">Installation</a>
+3.  <a href="#3">Testing and additional configuration</a>
+
+<b>Prerequisites</b><a name="1"></a>
 
 1. System with at least 512 MB RAM, 1 GHz CPU, 5 Gb free disk space;
 2. Clean Debian 8.6 installation (from netinstall amd64 iso, with only ssh
@@ -21,7 +26,7 @@
    these domains) pointing to this IP address (for testing you can use
    local ip address and appropriate records in the hosts file).
 
-<b>Installation</b>
+<b>Installation</b><a name="2"></a>
 
 As you <a href="https://sourcefabric.booktype.pro/airtime-25-for-broadcasters/preparing-the-server/">can see</a>: "The recommended Airtime server platform is Debian 7.2
 'wheezy'". But actually you can install Airtime on Debian 8.6 'Jessie', I
@@ -102,7 +107,7 @@ will show you how.
 
     killall -HUP apache2
 
-<b>Testing and additional configuration</b>
+<b>Testing and additional configuration</b><a name="3"></a>
 
 Now you can reach Airtime admin panel at https://airtime.copypasta.fm/
 You will see error message "The certificate is not trusted because it is
