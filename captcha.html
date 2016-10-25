@@ -16,6 +16,7 @@
 3. <a href="#3">Brief overview</a>.
 4. <a href="#4">Detailed description of each step</a>.
 5. <a href="#5">(Im)possible attacks</a>.
+6. <a href="#6">Appendix. A chained structure of imageboard</a>.
 
 <b>Acknowledgment.</b><a name="1"></a>
 
@@ -34,7 +35,7 @@ evil users by their IDs and thus stop spam from them", you can say.
 Here my reasons why we need alternative to ZeroID:
 
 1. ZeroID is centralized what is contradics the philosophy of ZeroNet.
-Yes, there are can be other identification sites. I conciously write
+Yes, there are can be other identification sites. I consciously write
 "site", not "zite", because it works in an old centralized manner, you need
 a dedicated server which signs users certificates. Centralized server can
 be hacked/DDoSed/sized by goverment and their owners arrested. Thus the
@@ -44,15 +45,31 @@ game a small number of owners of identity sites.
 2. ZeroID facilitates a mass surveillance. You posts on imageboard can be
 easily linked together. And even linked with other posts on ZeroTalk or
 your account on ZeroMe, if you are not using different identities for every
-zite. You must use different ID for every post on imageboard to be
-anonymous which is inconvenient.
+zite. You must use new IDs for every post on imageboard to be anonymous
+which is inconvenient.
 
-This problem can solve automatically created self-signed certificates for
+This problems can solve automatically created self-signed certificates for
 every new post to protect anonymity and proposed decentralized CAPTCHA to
 protect imageboard from spam. Self-signed certificates implementation you
 can see on <a href="https://bit.no.com:43110/16KzwuSAjFnivNimSHuRdPrYd1pNPhuHqN/">Nanasi text board</a>.
 
 <b>Brief overview.</b><a name="3"></a>
+
+I will warn you from the beginning that for this system to work there are
+must be strick hronological structure of posts on an imageboard. This is
+mean that no one can alter date of his previous posts or their content. I
+think this is a good feature by itelf and must be implemented by default.
+How to implement this is a topic for an other article, but I've written one
+possible implementation in the <a href="#6">Appendix</a>.
+
+Now let's pass through all steps of proposed algorithm of decentralized
+CAPTCHA:
+
+1. Each user when submits a new post generates a random CAPTCHA image. He
+automatically attach this image to his post and also a SHA-256 hash of
+correct answer (Figure 1).
+<img src="files/captcha_0.png">
+Figure 1. dfff
 </pre>
   </body>
 </html>
