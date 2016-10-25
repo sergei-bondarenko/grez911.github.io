@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="FILL THIS">
+    <meta name="description" content="FILL THIS">
+    <title>FILL THIS</title>
+  </head>
+  <body>
+<pre>
+<b>A decentralized CAPTCHA for ZeroNet.</b>
+
+<b>Contents:</b>
+1. <a href="#1">Acknowledgment</a>.
+2. <a href="#2">Rationale</a>.
+3. <a href="#3">Brief overview</a>.
+4. <a href="#4">Detailed description of each step</a>.
+5. <a href="#5">(Im)possible attacks</a>.
+
+<b>Acknowledgment.</b><a name="1"></a>
+
+The core idea of described CAPTCHA mechanism (using PoW with CAPTCHA) was
+taken from <a href="https://github.com/Karasiq/nanoboard">nanoboard project</a>.
+
+<b>Rationale.</b><a name="2"></a>
+
+I will propose a decentralized CAPTCHA mechanism using imageboard as
+example. But it is suitable not only for imageboards, of course, but for
+all kinds of forums, blogs, etc.
+
+"We have ZeroID. Why do we need CAPTCHA at all? A zite owner can easily ban
+evil users by their IDs and thus stop spam from them", you can say.
+
+Here my reasons why we need alternative to ZeroID:
+
+1. ZeroID is centralized what is contradics the philosophy of ZeroNet.
+Yes, there are can be other identification sites. I conciously write
+"site", not "zite", because it works in an old centralized manner, you need
+a dedicated server which signs users certificates. Centralized server can
+be hacked/DDoSed/sized by goverment and their owners arrested. Thus the
+whole project can be easily destroyed, it is only needed to take off the
+game a small number of owners of identity sites.
+
+2. ZeroID facilitates a mass surveillance. You posts on imageboard can be
+easily linked together. And even linked with other posts on ZeroTalk or
+your account on ZeroMe, if you are not using different identities for every
+zite. You must use different ID for every post on imageboard to be
+anonymous which is inconvenient.
+
+This problem can solve automatically created self-signed certificates for
+every new post to protect anonymity and proposed decentralized CAPTCHA to
+protect imageboard from spam. Self-signed certificates implementation you
+can see on <a href="https://bit.no.com:43110/16KzwuSAjFnivNimSHuRdPrYd1pNPhuHqN/">Nanasi text board</a>.
+
+<b>Brief overview.</b><a name="3"></a>
+</pre>
+  </body>
+</html>
