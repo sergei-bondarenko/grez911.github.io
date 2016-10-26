@@ -20,7 +20,7 @@
 <b>Acknowledgment.</b><a name="1"></a>
 
 The core idea of described CAPTCHA mechanism (using PoW alongside with
-optical recognition CAPTCHA) was taken from <a href="https://github.com/Karasiq/nanoboard">nanoboard project</a>.
+optical recognition CAPTCHA) was taken from <a target="_blank" href="https://github.com/Karasiq/nanoboard">nanoboard project</a>.
 
 <b>Rationale.</b><a name="2"></a>
 
@@ -54,7 +54,7 @@ which is inconvenient.
 These problems can be solved by using self-signed certificates for every
 new post to protect anonymity and proposed decentralized CAPTCHA to protect
 imageboard from spam. Self-signed certificates implementation you can see
-on <a href="https://bit.no.com:43110/16KzwuSAjFnivNimSHuRdPrYd1pNPhuHqN/">Nanasi text board</a>.
+on <a target="_blank" href="https://bit.no.com:43110/16KzwuSAjFnivNimSHuRdPrYd1pNPhuHqN/">Nanasi text board</a>.
 
 <b>Algorithm.</b><a name="3"></a>
 
@@ -72,17 +72,17 @@ CAPTCHA:
 automatically attach this image to his post and also a SHA-256 hash of the
 correct answer (Figure 1). This picture and hash obtained by other users
 but not displayed in their browsers. Probably it will be a good idea to add
-<a href="https://en.wikipedia.org/wiki/Salt_%28cryptography%29">salt</a> to the CAPTCHA answer to defend against <a href="https://en.wikipedia.org/wiki/Rainbow_table">rainbow tables</a>.
+<a target="_blank" href="https://en.wikipedia.org/wiki/Salt_%28cryptography%29">salt</a> to the CAPTCHA answer to defend against <a target="_blank" href="https://en.wikipedia.org/wiki/Rainbow_table">rainbow tables</a>.
 
 <img src="files/captcha_0.png">
 <i>Figure 1. Each post contains a CAPTCHA puzzle.</i>
 
 1. When somebody wants to publish a new post, he must calculate the hash
-of his post content and current <a href="https://en.wikipedia.org/wiki/Unix_time">Unix time</a>.
+of his post content and current <a target="_blank" href="https://en.wikipedia.org/wiki/Unix_time">Unix time</a>.
 
 2. Then goes proof-of-work (PoW). From this hash the user takes the last
 five HEX digits and must find another string which hash ends in the same
-five HEX digits. I wrote a <a href="files/hash.py">simple program</a> in python that can do it.
+five HEX digits. I wrote a <a target="_blank" href="files/hash.py">simple program</a> in python that can do it.
 
 3. Then the user takes the first four HEX digits from the hash of the
 string found in previous step and converts it to decimal. This number will
