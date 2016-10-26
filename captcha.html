@@ -2,21 +2,20 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta name="keywords" content="FILL THIS">
-    <meta name="description" content="FILL THIS">
-    <title>FILL THIS</title>
+    <meta name="keywords" content="decentralization,CAPTCHA,ZeroNet,imageboard,PoW">
+    <meta name="description" content="A concept of a decentralized CAPTCHA for ZeroNet.">
+    <title>Decentralized CAPTCHA</title>
   </head>
   <body>
 <pre>
-<b>A decentralized CAPTCHA for ZeroNet.</b>
+<b>A concept of a decentralized CAPTCHA for ZeroNet.</b>
 
 <b>Contents:</b>
 1. <a href="#1">Acknowledgment</a>.
 2. <a href="#2">Rationale</a>.
-3. <a href="#3">Brief overview</a>.
-4. <a href="#4">Detailed description of each step</a>.
-5. <a href="#5">(Im)possible attacks</a>.
-6. <a href="#6">Appendix. A chained structure of imageboard</a>.
+3. <a href="#3">Algorithm</a>.
+4. <a href="#4">Why not use only PoW?</a>
+5. <a href="#5">Appendix. A chained structure of an imageboard</a>.
 
 <b>Acknowledgment.</b><a name="1"></a>
 
@@ -37,10 +36,14 @@ Here my reasons why we need alternative to ZeroID:
 1. ZeroID is centralized what is contradics the philosophy of ZeroNet.
 Yes, there are can be other identification sites. I consciously write
 "site", not "zite", because it works in an old centralized manner, you need
-a dedicated server which signs users certificates. Centralized server can
-be hacked/DDoSed/sized by goverment and their owners arrested. Thus the
-whole project can be easily destroyed, it is only needed to take off the
-game a small number of owners of identity sites.
+a dedicated server which signs users certificates. Server can be hacked or
+DDoSed or sized by goverment and its owner arrested. Thus the whole project
+can be easily destroyed, it is only needed to take off the game a small
+number of people who runs identity sites. At this time there is only two
+identity issuers and this number will never be big, because if you create a
+new identity site you must convince all other people who runs zites to
+permit users to use identities from your site. Nobody will sign up at your
+site if they can not use issued identity everywere.
 
 2. ZeroID facilitates a mass surveillance. You posts on imageboard can be
 easily linked together. And even linked with other posts on ZeroTalk or
@@ -48,28 +51,81 @@ your account on ZeroMe, if you are not using different identities for every
 zite. You must use new IDs for every post on imageboard to be anonymous
 which is inconvenient.
 
-This problems can solve automatically created self-signed certificates for
-every new post to protect anonymity and proposed decentralized CAPTCHA to
-protect imageboard from spam. Self-signed certificates implementation you
-can see on <a href="https://bit.no.com:43110/16KzwuSAjFnivNimSHuRdPrYd1pNPhuHqN/">Nanasi text board</a>.
+These problems can be solved by using self-signed certificates for every
+new post to protect anonymity and proposed decentralized CAPTCHA to protect
+imageboard from spam. Self-signed certificates implementation you can see
+on <a href="https://bit.no.com:43110/16KzwuSAjFnivNimSHuRdPrYd1pNPhuHqN/">Nanasi text board</a>.
 
-<b>Brief overview.</b><a name="3"></a>
+<b>Algorithm.</b><a name="3"></a>
 
 I will warn you from the beginning that for this system to work there are
-must be strick hronological structure of posts on an imageboard. This is
-mean that no one can alter date of his previous posts or their content. I
-think this is a good feature by itelf and must be implemented by default.
-How to implement this is a topic for an other article, but I've written one
-possible implementation in the <a href="#6">Appendix</a>.
+must be strict chronological order of posts on an imageboard. This is mean
+that no one can alter date of his previous posts or their content. I think
+this is a good feature by itelf and must be implemented by default. How to
+implement this is a topic for another article, but I've proposed one
+possible solution in the <a href="#5">Appendix</a>.
 
 Now let's pass through all steps of proposed algorithm of decentralized
 CAPTCHA:
 
-1. Each user when submits a new post generates a random CAPTCHA image. He
-automatically attach this image to his post and also a SHA-256 hash of
-correct answer (Figure 1).
+0. Each user when submits a new post generates a random CAPTCHA image. He
+automatically attach this image to his post and also a SHA-256 hash of the
+correct answer (Figure 1). This picture and hash obtained by other users
+but not displayed in their browsers. Probably it will be a good idea to add
+<a href="https://en.wikipedia.org/wiki/Salt_%28cryptography%29">salt</a> to the CAPTCHA answer to defend against <a href="https://en.wikipedia.org/wiki/Rainbow_table">rainbow tables</a>.
+
 <img src="files/captcha_0.png">
-Figure 1. dfff
+<i>Figure 1. Each post contains a CAPTCHA puzzle.</i>
+
+1. When somebody wants to publish a new post, he must calculate the hash
+of his post content and current <a href="https://en.wikipedia.org/wiki/Unix_time">Unix time</a>.
+
+2. Then goes proof-of-work (PoW). From this hash the user takes the last
+five HEX digits and must find another string which hash ends in the same
+five HEX digits. I wrote a <a href="files/hash.py">simple program</a> in python that can do it.
+
+3. Then the user takes the first four HEX digits from the hash of the
+string found in previous step and converts it to decimal. This number will
+determine the number of the post which contains a CAPTCHA to solve.
+Counting starts from this message number and goes backwards (Figure 2).
+
+<img src="files/captcha_1.png">
+<i>Figure 2. This is how CAPTCHA for a new post is chosen.</i>
+
+4. User solves the CAPTCHA. He compares hash of his answer with received
+hash. If this two hashes equal then the user announces his message to
+everybody. If the user could not solve CAPTCHA, then he repeats PoW, finds
+a new string and gets a new CAPTCHA.
+
+5. Other users download this message, check PoW and CAPTCHA and if it is
+alright, announce message further.
+
+If the imageboard is new, then the first 65536 CAPTCHA images must create
+its owner.
+
+<b>Why not use only PoW?</b><a name="4"></a>
+
+Some expert users can do PoW on GPU, gaining thousands of times much power
+than regular users. If a regular user can post only one post in one second,
+an attacker can create 1000 posts in one second flooding imageboard with
+spam.
+
+On the other side with this decentralized algorithm attacker on everage
+must perform 32768 PoW to get one particular CAPTCHA. On the other hand a
+regular user can solve almost every CAPTCHA and usually performs only one
+PoW.
+
+<b>Appendix. A chained structure of an imageboard.</b><a name="5"></a>
+
+To prevent users to change their old messages (change their date, content
+or inserting new messages as old, each message must contain the hash of
+previous message. Thus if a new message arrives and it claims that it is
+some old message (someone trying to insert his message between old posts)
+it will be rejected.
+
+If the owner of imageboard wants to grant users the right to alter their
+messages (and accordingly to delete them), than the message content will
+not be included in the hash calculation.
 </pre>
   </body>
 </html>
