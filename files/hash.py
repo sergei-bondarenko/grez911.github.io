@@ -6,7 +6,7 @@ import os
 import string
 
 if len(sys.argv) != 2:
-  print "Usage:", sys.argv[0], "\"desired hash ending\""
+  print "Usage:", sys.argv[0], "\"write here a desired hash ending\""
   sys.exit()
 
 postfix = sys.argv[1].lower()
