@@ -80,8 +80,8 @@ but not displayed in their browsers. Probably it will be a good idea to add
 1. When somebody wants to publish a new post, he must calculate the hash
 of his post content and current <a target="_blank" href="https://en.wikipedia.org/wiki/Unix_time">Unix time</a>.
 
-2. Then goes proof-of-work (PoW). From this hash the user takes the last
-five HEX digits and must find another string which hash ends in the same
+2. Then goes proof-of-work (PoW). The user takes the last five HEX digits
+from this hash and must find another string which hash ends in the same
 five HEX digits. I wrote a <a href="files/hash.py">simple program</a> in python that can do it.
 
 3. Then the user takes the first four HEX digits from the hash of the
