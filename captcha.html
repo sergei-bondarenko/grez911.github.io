@@ -54,7 +54,7 @@ Now let's pass through all steps of proposed algorithm of a decentralized CAPTCH
 
 1. When somebody wants to publish a new post, he must calculate the hash of his post content and current <a target="_blank" href="https://en.wikipedia.org/wiki/Unix_time">Unix time</a>.
 
-2. Then goes proof-of-work (PoW). The user takes the last five HEX digits from this hash and must find another string which hash ends in the same five HEX digits. I wrote a <a href="files/hash.txt">simple program</a> in Python that can do it.
+2. Then goes proof-of-work (PoW). The user takes the last five HEX digits from this hash and must find another string which hash ends in the same five HEX digits. I wrote a <a target="_blank" href="files/hash.txt">simple program</a> in Python that can do it.
 
 3. Then the user takes the first four HEX digits from the hash of the string found in previous step and converts it to decimal. This number will determine the number of the post which contains a CAPTCHA to solve. Counting starts from this message number and goes backwards (Figure 2).
 
