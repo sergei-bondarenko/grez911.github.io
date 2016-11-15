@@ -5,6 +5,12 @@
     <meta name="keywords" content="GNU, Linux, Debian, Jessie, 8, Airtime, Icecast, Apache">
     <meta name="description" content="Setting up an internet radio station on Debian Jessie with Airtime and Icecast 2.">
     <title>Creating an internet radio station.</title>
+    <style>
+      pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+    </style>
   </head>
   <body>
 <pre>
@@ -15,22 +21,16 @@
 2. <a href="#2">Installation</a>.
 3. <a href="#3">Testing and additional configuration</a>.
 
-<b>Prerequisites.</b><a name="1"></a>
+<a name="1"></a><b>Prerequisites.</b>
 
 1. System with at least 512 MB RAM, 1 GHz CPU, 5 Gb free disk space;
-2. Clean Debian 8.6 installation (from netinstall amd64 iso, with only ssh
-   server and standard system utilities, of course without desktop
-   environment);
+2. Clean Debian 8.6 installation (from netinstall amd64 iso, with only ssh server and standard system utilities, of course without desktop environment);
 3. One available IP address;
-4. Domain names "copypasta.fm" and "airtime.copypasta.fm" (I will use
-   these domains) pointing to this IP address (for testing you can use
-   local ip address and appropriate records in the hosts file).
+4. Domain names "copypasta.fm" and "airtime.copypasta.fm" (I will use these domains) pointing to this IP address (for testing you can use local ip address and appropriate records in the hosts file).
 
-<b>Installation.</b><a name="2"></a>
+<a name="2"></a><b>Installation.</b>
 
-As you <a target="_blank" href="https://sourcefabric.booktype.pro/airtime-25-for-broadcasters/preparing-the-server/">can see</a>: "The recommended Airtime server platform is Debian 7.2
-'wheezy'". But actually you can install Airtime on Debian 8.6 'Jessie', I
-will show you how.
+As you <a target="_blank" href="https://sourcefabric.booktype.pro/airtime-25-for-broadcasters/preparing-the-server/">can see</a>: "The recommended Airtime server platform is Debian 7.2 'wheezy'". But actually you can install Airtime on Debian 8.6 'Jessie', I will show you how.
 
 1. Open /etc/apt/sources.list and append this:
 
@@ -38,15 +38,11 @@ will show you how.
 
 2. apt-get update
 
-   You will see this error: "W: GPG error: http://apt.sourcefabric.org
-   wheezy InRelease: The following signatures couldn't be verified because
-   the public key is not available: NO_PUBKEY 0888FE5B174C1854". We will
-   fix this.
+   You will see this error: "W: GPG error: http://apt.sourcefabric.org wheezy InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 0888FE5B174C1854". We will fix this.
 
 3. apt-get install sourcefabric-keyring
 
-   On the question "Install these packages without verification? [y/N]"
-   type "y" and press Enter.
+   On the question "Install these packages without verification? [y/N]" type "y" and press Enter.
 
 4. Update your computer's software sources again:
 
@@ -66,16 +62,14 @@ will show you how.
 
 9. gdebi airtime-easy-setup.deb
 
-   Type "y" and press Enter. On question "Configure Icecast2?" choose "No".
-   We will configure it manually later.
+   Type "y" and press Enter. On question "Configure Icecast2?" choose "No". We will configure it manually later.
 
 10. apt-get update
 
-    Probably you will see error "W: Failed to fetch
-    http://apt.sourcefabric.org/dists/squeeze/main/binary-amd64/Packages
+    Probably you will see error "W: Failed to fetch http://apt.sourcefabric.org/dists/squeeze/main/binary-amd64/Packages
     404  Not Found [IP: 144.76.185.238 80]
-    E: Some index files failed to download. They have been ignored, or old
-    ones used instead.", but it's OK.
+    E: Some index files failed to download. They have been ignored, or old ones used instead.",
+    but it's OK.
 
 11. apt-get install airtime
 
@@ -107,25 +101,15 @@ will show you how.
 
     killall -HUP apache2
 
-<b>Testing and additional configuration.</b><a name="3"></a>
+<a name="3"></a><b>Testing and additional configuration.</b>
 
-Now you can reach Airtime admin panel at https://airtime.copypasta.fm/
-You will see error message "The certificate is not trusted because it is
-self-signed". It's OK, you can install other certificate later if you want.
-Now you can login with "admin/admin" pair and start using Airtime with
-<a target="_blank" href="https://sourcefabric.booktype.pro/airtime-25-for-broadcasters/what-is-airtime/">instructions</a> from the official website.
+Now you can reach Airtime admin panel at https://airtime.copypasta.fm/. You will see error message "The certificate is not trusted because it is self-signed". It's OK, you can install other certificate later if you want. Now you can login with "admin/admin" pair and start using Airtime with <a target="_blank" href="https://sourcefabric.booktype.pro/airtime-25-for-broadcasters/what-is-airtime/">instructions</a> from the official website.
 
-You can see Icecast status at http://copypasta.fm:8000/ (for "Admin Home"
-tab use "admin/donthackme" pair). You must change the default passwords in
-the /etc/icecast2/icecast.xml file. Don't forget set this passwords in the
-Airtime <a target="_blank" href="https://sourcefabric.booktype.pro/airtime-25-for-broadcasters/stream-settings/">output stream settings</a>.
+You can see Icecast status at http://copypasta.fm:8000/ (for "Admin Home" tab use "admin/donthackme" pair). You must change the default passwords in the /etc/icecast2/icecast.xml file. Don't forget set this passwords in the Airtime <a target="_blank" href="https://sourcefabric.booktype.pro/airtime-25-for-broadcasters/stream-settings/">output stream settings</a>.
 
-You can listen to your stream at http://copypasta.fm:8000/airtime_128 (it
-will be empty if you haven't <a target="_blank" href="https://sourcefabric.booktype.pro/airtime-25-for-broadcasters/calendar/">created a show</a>).
+You can listen to your stream at http://copypasta.fm:8000/airtime_128 (it will be empty if you haven't <a target="_blank" href="https://sourcefabric.booktype.pro/airtime-25-for-broadcasters/calendar/">created a show</a>).
 
-After this you probably want to create your radio station main page. Create
-a new config for Apache /etc/apache2/sites-available/copypasta.fm.conf
-Write in this file the following:
+After this you probably want to create your radio station main page. Create a new config for Apache /etc/apache2/sites-available/copypasta.fm.conf. Write in this file the following:
 
 &lt;VirtualHost *:80&gt;
       ServerName copypasta.fm
@@ -140,8 +124,7 @@ Write in this file the following:
       &lt;/Directory&gt;
 &lt;/VirtualHost&gt;
 
-Change /home/user/www path with the path where your radio site will be. In
-my case the file /home/user/www/index.php contains the following:
+Change /home/user/www path with the path where your radio site will be. In my case the file /home/user/www/index.php contains the following:
 
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -166,13 +149,11 @@ killall -HUP apache2
 
 Now you can listen to your radio at http://copypasta.fm/
 
-If you want that your stream also be available at the port 443 and be
-encrypted, i.e. https://copypasta.fm/airtime_128, than do the following:
+If you want that your stream also be available at the port 443 and be encrypted, i.e. https://copypasta.fm/airtime_128, than do the following:
 
 1. a2enmod proxy_http
 
-2. Open /etc/apache2/sites-enabled/copypasta.fm.conf, delete all and write
-   this:
+2. Open /etc/apache2/sites-enabled/copypasta.fm.conf, delete all and write this:
 
 &lt;VirtualHost *:443&gt;
       SSLEngine on
@@ -230,9 +211,7 @@ encrypted, i.e. https://copypasta.fm/airtime_128, than do the following:
   &lt;/body&gt;
 &lt;/html&gt;
 
-Now you can listen your radio at https://copypasta.fm/ without error about
-mixed encrypted and unencrypted content. Your stream will be available at
-https://copypasta.fm/airtime_128 and http://copypasta.fm:8000/airtime_128
+Now you can listen your radio at https://copypasta.fm/ without error about mixed encrypted and unencrypted content. Your stream will be available at https://copypasta.fm/airtime_128 and http://copypasta.fm:8000/airtime_128
 </pre>
   </body>
 </html>
