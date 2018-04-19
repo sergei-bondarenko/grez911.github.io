@@ -46,11 +46,11 @@ socks pass {
 3. Restart danted:
 root@server# /etc/init.d/danted restart
 
-4. Add user (replace [USERNAME] with a desirable username):
-root@server# useradd --shell /usr/sbin/nologin [USERNAME]
+4. Add user (replace USERNAME with a desirable username):
+root@server# useradd --shell /usr/sbin/nologin USERNAME
 
 5. Set password:
-root@server# passwd [USERNAME]
+root@server# passwd USERNAME
 
 6. (Optional) Test proxy with curl on your local machine (replace USERNAME, PASSWORD and xxx.xxx.xxx.xxx with values used above):
 user@local-pc$ curl -x socks5://USERNAME:PASSWORD@xxx.xxx.xxx.xxx:1080 https://api.ipify.org/
