@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="socks, socks5, proxy, server, debian, 9, stretch, linux">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOCKS5 proxy server in 5 commands</title>
+    <style>
+      pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+    </style>
+  </head>
+  <body>
+<pre>
+<b>SOCKS5 proxy server in 5 commands.</b>
+
+Here I describe how to run a SOCKS5 proxy server with authentification on Debian 9 (Stretch) using <a target="_blank" href="https://www.inet.no/dante/">Dante</a> in 5 steps.
+
+1. Login into your VPS as root and install dante-server package:
+root@server# apt-get update
+root@server# apt-get install dante-server
+
+2. Open /etc/danted.conf, delete all strings and copy-paste this (only replace xxx.xxx.xxx.xxx with your server IP address):
+logoutput: stderr
+internal: xxx.xxx.xxx.xxx port = 1080
+external: xxx.xxx.xxx.xxx
+
+socksmethod: username
+user.privileged: root
+user.unprivileged: nobody
+user.libwrap: nobody
+
+client pass {
+    from: 0/0 to: 0/0
+    log: error
+}
+
+socks pass {
+    from: 0/0 to: 0/0
+    log: error
+}
+
+3. Restart danted:
+root@server# /etc/init.d/danted restart
+
+4. Add user (replace [USERNAME] with a desirable username):
+root@server# useradd --shell /usr/sbin/nologin [USERNAME]
+
+5. Set password:
+root@server# passwd [USERNAME]
+
+6. (Optional) Test proxy with curl on your local machine (replace USERNAME, PASSWORD and xxx.xxx.xxx.xxx with values used above):
+user@local-pc$ curl -x socks5://USERNAME:PASSWORD@xxx.xxx.xxx.xxx:1080 https://api.ipify.org/
+
+You must get a "xxx.xxx.xxx.xxx" response (your server IP address).
+</pre>
+  </body>
+</html>
