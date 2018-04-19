@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="proxy, zeronet, debian, 9, stretch, nginx">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to setup a ZeroNet proxy</title>
+    <style>
+      pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+    </style>
+  </head>
+  <body>
+<pre>
+<b>How to setup a ZeroNet proxy.</b>
+
+Why do you need it?
+1. You can browse ZeroNet via personal proxy from your smartphone or any other device as a regular site.
+2. It will be online 24/7 which is good for connectivity and peer discovery.
+3. You want share it with your friends (or all Internet users) who can't run ZeroNet on their devices.
+4. You can browse ZeroNet on networks with a censorship/firewall/NAT.
+
+First you need to obtain a domain name and a VPS. There are plenty of free domains on the Internet, VPS prices start from several dollars per month (1 Core, 512 MB RAM and 10 GB disk will be more than enough). Make A-record of you domain (and www subdomain) pointing to IP address of your VPS.
+Instructions below have been tested on Debian 9 Stretch but probably will work with other Linux-based distributions with slight alterations.
+
+Connect to the VPS via SSH as root and do the following:
+
+1. Update package list:
+root@server# apt-get update
+
+2. Install necessary packages:
+root@server# apt-get install nginx git python-msgpack python-gevent net-tools dirmngr
+
+3. Open http://YOUR-DOMAIN/ in a browser and you must see a "Welcome to nginx!" page.
+
+4. Clone Let's Encrypt repository:
+root@server# cd /root
+root@server# git clone https://github.com/letsencrypt/letsencrypt
+
+5. Obtain a SSL-sertificate (it will ask your e-mail in order to notify you in case, for example, if your certificate can't be renewed):
+root@server# /root/letsencrypt/letsencrypt-auto certonly --webroot -w /var/www/html/ -d YOUR-DOMAIN -d www.YOUR-DOMAIN
+
+6. Open /etc/nginx/sites-enabled/default, and append this to the end (don't forget to replace YOUR-DOMAIN):
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    ssl_certificate /etc/letsencrypt/live/YOUR-DOMAIN/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/YOUR-DOMAIN/privkey.pem;
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+    server_name _;
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+
+7. Restart nginx:
+root@server# /etc/init.d/nginx restart
+
+8. Open https://YOUR-DOMAIN/ in a browser and you must again see a "Welcome to nginx!" page.
+
+9. Open cron editor:
+root@server# crontab -e
+And append the following line:
+
+0 0 5,15,25 * * /root/letsencrypt/letsencrypt-auto renew --agree-tos && /etc/init.d/nginx restart
+
+Save it. This command will renew certificate when it will be close to expiring.
+
+10. Create non-privileged user without shell for running ZeroNet:
+root@server# useradd -m -d /home/zeronet --shell /usr/sbin/nologin zeronet
+
+11. Clone ZeroNet repository:
+root@server# cd /home/zeronet
+root@server# git clone https://github.com/HelloZeroNet/ZeroNet.git
+root@server# chown -R zeronet: ZeroNet
+
+12. Install supervisor (to run ZeroNet forever):
+root@server# apt-get install supervisor
+
+13. Create a new file /etc/supervisor/conf.d/zeronet.conf with the following content:
+[program:zeronet]
+command=/home/zeronet/ZeroNet/zeronet.py
+autostart=true
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/var/log/supervisor/zeronet.log
+logfile_maxbytes=50MB
+logfile_backups=10
+loglevel=debug
+user=zeronet
+
+14. Restart supervisor:
+root@server# /etc/init.d/supervisor restart
+
+15. Check open ports with command:
+root@server# netstat -tnlp
+
+You must see something like this:
+
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      4567/nginx: master  
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      633/sshd            
+tcp        0      0 0.0.0.0:443             0.0.0.0:*               LISTEN      4567/nginx: master  
+tcp        0      0 0.0.0.0:18399           0.0.0.0:*               LISTEN      5726/python2.7      
+tcp        0      0 127.0.0.1:43110         0.0.0.0:*               LISTEN      5726/python2.7      
+tcp6       0      0 :::80                   :::*                    LISTEN      4567/nginx: master  
+tcp6       0      0 :::22                   :::*                    LISTEN      633/sshd            
+tcp6       0      0 :::443                  :::*                    LISTEN      4567/nginx: master
+
+16. Create strong Diffie-Hellman parameters for nginx:
+root@server# mkdir /etc/nginx/ssl
+root@server# openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
+
+17. Remove all content from /etc/nginx/sites-enabled/default and replace it with this (don't forget to substitute YOUR-DOMAIN):
+server {
+    listen         80;
+    listen    [::]:80;
+    server_name    YOUR-DOMAIN www.YOUR-DOMAIN;
+    location /.well-known {
+        alias /var/www/html/.well-known;
+    }
+    location / {
+        return 301 https://YOUR-DOMAIN$request_uri;
+    }
+}
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    ssl_certificate /etc/letsencrypt/live/YOUR-DOMAIN/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/YOUR-DOMAIN/privkey.pem;
+    ssl_dhparam /etc/nginx/ssl/dhparam.pem;
+    add_header Strict-Transport-Security "max-age=63072000; includeSubdomains;" always;
+    server_name www.YOUR-DOMAIN;
+    return 301 https://YOUR-DOMAIN$request_uri;
+}
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    ssl_certificate /etc/letsencrypt/live/YOUR-DOMAIN/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/YOUR-DOMAIN/privkey.pem;
+    ssl_dhparam /etc/nginx/ssl/dhparam.pem;
+    server_name YOUR-DOMAIN;
+    add_header Strict-Transport-Security "max-age=63072000; includeSubdomains;" always;
+    location / {
+        proxy_pass http://127.0.0.1:43110;
+    }
+    location /Websocket {
+        proxy_pass http://127.0.0.1:43110;
+        proxy_http_version 1.1;
+        proxy_read_timeout 1h;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}
+
+18. Restart nginx:
+root@server# /etc/init.d/nginx restart
+
+19. Open https://YOUR-DOMAIN/ in a browser, you must see a ZeroNet hello page.
+
+20. Now we are going to install Tor (follow <a target="_blank" href="https://www.torproject.org/docs/debian.html.en">this</a> instructions):
+root@server# echo 'deb http://deb.torproject.org/torproject.org stretch main' >> /etc/apt/sources.list.d/tor.list
+root@server# echo 'deb-src https://deb.torproject.org/torproject.org stretch main' >> /etc/apt/sources.list.d/tor.list
+root@server# gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
+root@server# gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
+root@server# apt update
+root@server# apt install tor deb.torproject.org-keyring
+
+21. Append two strings to /etc/tor/torrc:
+root@server# echo 'ControlPort 9051' >> /etc/tor/torrc
+root@server# echo 'CookieAuthentication 1' >> /etc/tor/torrc
+
+22. Restart Tor:
+root@server# /etc/init.d/tor restart
+
+23. Add permission to read the auth cookie by zeronet user:
+root@server# usermod -a -G debian-tor zeronet
+
+24. Restart supervisor:
+root@server# /etc/init.d/supervisor restart
+
+25. Open https://YOUR-DOMAIN/ in a browser, you must see that port is opened and Tor is available.
+
+26. Now you can enable multiuser plugin:
+root@server# mv /home/zeronet/ZeroNet/plugins/disabled-Multiuser /home/zeronet/ZeroNet/plugins/Multiuser
+
+27. Restart supervisor:
+root@server# /etc/init.d/supervisor restart
+
+28. If you want, you can protect user interface with password (replace YOUR-PASSWORD):
+root@server# echo '[global]' > /home/zeronet/ZeroNet/zeronet.conf
+root@server# echo 'ui_password = "YOUR-PASSWORD"' >> /home/zeronet/ZeroNet/zeronet.conf
+root@server# chown zeronet: /home/zeronet/ZeroNet/zeronet.conf
+
+29. Restart supervisor:
+root@server# /etc/init.d/supervisor restart
+</pre>
+  </body>
+</html>
