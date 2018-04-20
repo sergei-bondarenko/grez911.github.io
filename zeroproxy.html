@@ -20,10 +20,10 @@
 Why do you need it?
 1. You can browse ZeroNet via personal proxy from your smartphone or any other device as a regular site.
 2. It will be online 24/7 which is good for connectivity and peer discovery.
-3. You want share it with your friends (or all Internet users) who can't run ZeroNet on their devices.
+3. You want to share it with your friends (or all Internet users) who can't run ZeroNet on their devices.
 4. You can browse ZeroNet on networks with a censorship/firewall/NAT.
 
-First you need to obtain a domain name and a VPS. There are plenty of free domains on the Internet, VPS prices start from several dollars per month (1 Core, 512 MB RAM and 10 GB disk will be more than enough). Make A-record of you domain (and www subdomain) pointing to IP address of your VPS.
+First you need to obtain a domain name and a VPS. There are plenty of free domains on the Internet, VPS prices start from several dollars per month (1 Core, 512 MB RAM and 10 GB disk will be more than enough). Make an A-record of you domain (and www subdomain) pointing to the IP address of your VPS.
 Instructions below have been tested on Debian 9 Stretch but probably will work with other Linux-based distributions with slight alterations.
 
 Connect to the VPS via SSH as root and do the following:
@@ -190,7 +190,7 @@ root@server# /etc/init.d/supervisor restart
 root@server# mv /home/zeronet/ZeroNet/plugins/disabled-Multiuser /home/zeronet/ZeroNet/plugins/Multiuser
 root@server# /etc/init.d/supervisor restart
 
-27. If you want, you can protect user interface with password (replace YOUR-PASSWORD):
+27. If you want, you can protect user interface with a password (replace YOUR-PASSWORD):
 root@server# mv /home/zeronet/ZeroNet/plugins/disabled-UiPassword /home/zeronet/ZeroNet/plugins/UiPassword
 root@server# echo '[global]' > /home/zeronet/ZeroNet/zeronet.conf
 root@server# echo 'ui_password = YOUR-PASSWORD' >> /home/zeronet/ZeroNet/zeronet.conf
