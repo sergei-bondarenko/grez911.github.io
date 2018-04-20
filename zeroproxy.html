@@ -66,7 +66,7 @@ root@server# /etc/init.d/nginx restart
 root@server# crontab -e
 And append the following line:
 
-0 0 5,15,25 * * /root/letsencrypt/letsencrypt-auto renew --agree-tos && /etc/init.d/nginx restart
+0 0 5,15,25 * * /root/letsencrypt/letsencrypt-auto renew && /etc/init.d/nginx restart
 
 Save it. This command will renew certificate when it will be close to expiring.
 
@@ -188,17 +188,19 @@ root@server# /etc/init.d/supervisor restart
 
 26. Now you can enable multiuser plugin:
 root@server# mv /home/zeronet/ZeroNet/plugins/disabled-Multiuser /home/zeronet/ZeroNet/plugins/Multiuser
-
-27. Restart supervisor:
 root@server# /etc/init.d/supervisor restart
 
-28. If you want, you can protect user interface with password (replace YOUR-PASSWORD):
+27. If you want, you can protect user interface with password (replace YOUR-PASSWORD):
+root@server# mv /home/zeronet/ZeroNet/plugins/disabled-UiPassword /home/zeronet/ZeroNet/plugins/UiPassword
 root@server# echo '[global]' > /home/zeronet/ZeroNet/zeronet.conf
-root@server# echo 'ui_password = "YOUR-PASSWORD"' >> /home/zeronet/ZeroNet/zeronet.conf
+root@server# echo 'ui_password = YOUR-PASSWORD' >> /home/zeronet/ZeroNet/zeronet.conf
 root@server# chown zeronet: /home/zeronet/ZeroNet/zeronet.conf
-
-29. Restart supervisor:
 root@server# /etc/init.d/supervisor restart
+
+28. Try to reboot your VPS, all services must start automatically. Also try to check certificate renewal with the following command:
+root@server# /root/letsencrypt/letsencrypt-auto renew --dry-run
+
+29. If your proxy is public, please, share link on reddit, ZeroTalk, Millchan, ZeroWiki, etc. ^_^
 </pre>
   </body>
 </html>
