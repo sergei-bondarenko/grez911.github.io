@@ -136,6 +136,11 @@ PROFESSIONAL SKILLS:
   - version control systems:
     - Git
     - Subversion
+  - data science:
+    - NumPy
+    - pandas
+    - scikit-learn
+    - Keras
   - virtualization:
     - LXC
     - Linux-VServer
