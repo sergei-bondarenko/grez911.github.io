@@ -178,3 +178,6 @@ PROFESSIONAL SKILLS:
     - SpamAssassin
   - DNS:
     - PowerDNS
+  - broadcasting:
+    - Airtime
+    - Icecast
