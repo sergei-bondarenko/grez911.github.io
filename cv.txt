@@ -66,8 +66,8 @@ WORK EXPERIENCE:
     position: Linux System Administrator
     main activities:
       - full hardware and software maintenance of servers
-      - creating, configuring and optimising software environments for any kind of web projects
       - monitoring and incidents resolvement
+      - creation, configuration and optimisation of software environments for any kind of web projects
       - direct communication with clients for trouble resolving and consulting
       - tasks automation with Bash and Python
       - web sites creation for internal needs
