@@ -1,0 +1,180 @@
+---
+PERSONAL INFORMATION:
+  name: Sergei Bondarenko
+  sex: male
+  birth year: 1994
+  address: Apt. 17, Build. 5, 3rd Tiraspolskaya St., Vitebsk, Belarus, 210034
+  mobile phone: +375 29 884-88-97
+  email: grez911@gmail.com
+  skype: grez911
+  telegram: grez911
+  website: https://grez911.github.io/
+
+
+LANGUAGES:
+  - name: Russian
+    level: native
+
+  - name: Belarussian
+    level: native
+
+  - name: English
+    level: intermediate
+
+
+EDUCATION:
+  - institution name: Vitebsk Branch of Higher State College of Communications
+    entry year: 2009
+    graduation year: 2013
+    degree: Associate
+    speciality: Technical Exploitation of Telecommunication Networks
+
+  - institution name: Belarusian State Academy of Telecommunications
+    entry year: 2013
+    graduation year: 2016
+    degree: Bachelor
+    speciality: Infocommunication Technology
+
+
+CERTIFICATES:
+  - institution name: Belarusian State Academy of Telecommunications
+    entry year: 2014
+    graduation year: 2015
+    course name: CCNA Routing and Switching
+
+
+MOOC:
+  - course name: Machine Learning
+    instructors: Andrew Ng
+    year: 2015
+
+  - course name: Deep Learning
+    instructors: Andrew Ng
+    year: 2018
+
+  - course name: fast.ai
+    instructors: Jeremy Howard, Rachel Thomas
+    year: 2018
+
+
+WORK EXPERIENCE:
+  - company: Extmedia
+    city: Minsk
+    country: Belarus
+    from: July 2016
+    to: present
+    position: Linux System Administrator
+    main activities:
+      - full hardware and software maintenance of servers
+      - creating, configuring and optimising software environments for any kind of web projects
+      - monitoring and incidents resolvement
+      - direct communication with clients for trouble resolving and consulting
+      - tasks automation with Bash and Python
+      - web sites creation for internal needs
+
+
+MY FINISHED PROJECTS:
+  - description: a tetris game
+    written in: Javascript, HTML
+    URL: https://github.com/grez911/ascii-tetris
+
+  - description: a web interface for mailing lists management
+    written in: PHP, Javascript, CSS, HTML
+    URL: https://github.com/grez911/mlmmj-light-web
+
+  - description: an internet radio
+    written in: Javascript, CSS, HTML
+    URL: https://github.com/grez911/chiptune2.js
+
+  - description: an enrypted image hosting
+    written in: PHP (Smarty), Javascript, CSS, HTML
+    URL: https://github.com/grez911/one-time.nl
+
+  - description: a blog platform for ZeroNet
+    written in: Javascript (Vue.js), CSS (Bulma), HTML
+    URL: https://github.com/grez911/poster
+
+  - description: a site for recording different daily statistics
+    written in: Python (Django), Javascript (Vue.js), CSS (Bulma), SQLite, HTML
+    URL: https://github.com/grez911/countbook
+
+  - description: a console based API for RackTables database
+    written in: Python, MySQL
+    URL: https://github.com/grez911/racktables-api
+
+  - description: a monitoring system with a web interface
+    written in: Bash, Python, PHP, Javascript, CSS, HTML
+    URL: not in a public access
+
+  - numerous scripts written for work automation:
+    - virus blocking with notifications via e-mail
+    - virtual servers management
+    - IP and User-Agent blocking
+    - SSL certificates installation
+    - Jabber bot
+    - other small Bash scripts
+
+
+PROFESSIONAL SKILLS:
+  - Linux distributions:
+    - Debian
+    - Ubuntu
+    - Arch Linux
+    - CentOS
+    - Mint
+  - web servers:
+    - Apache
+    - nginx
+    - Tomcat
+  - programming and markup languages:
+    - Bash
+    - Python
+    - Javascript
+    - PHP
+    - CSS
+    - HTML
+  - version control systems:
+    - Git
+    - Subversion
+  - virtualization:
+    - LXC
+    - Linux-VServer
+    - QEMU/KVM
+    - VirtualBox
+    - Docker
+  - RAID:
+    - mdadm
+    - hardware RAID
+  - server configuration tools:
+    - Puppet
+    - Ansible
+  - backup tools:
+    - Bacula
+  - databases:
+    - MySQL
+    - MariaDB
+    - SQLite
+    - Galera Cluster
+    - PostgreSQL
+  - firewall:
+    - iptables
+  - load balancing:
+    - HAProxy
+    - Ceph
+    - database replication
+    - Lsyncd
+  - monitoring:
+    - Icinga
+    - Graylog
+    - Graphite
+    - collectd
+  - caching:
+    - varnish
+    - Memcached
+    - Redis
+  - e-mail:
+    - Exim
+    - Dovecot
+    - SpamAssassin
+  - DNS:
+    - PowerDNS
