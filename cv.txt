@@ -15,7 +15,7 @@ LANGUAGES:
   - name: Russian
     level: native
 
-  - name: Belarussian
+  - name: Belarusian
     level: native
 
   - name: English
@@ -28,12 +28,17 @@ EDUCATION:
     graduation year: 2013
     degree: Associate
     speciality: Technical Exploitation of Telecommunication Networks
+    achievements:
+      - first degree diploma in the final stage of the Republican Olympiad in Physics (2010 year)
+      - fellow at the special fund of the President of the Republic of Belarus for social support gifted students (2010 year)
 
   - institution name: Belarusian State Academy of Telecommunications
     entry year: 2013
     graduation year: 2016
     degree: Bachelor
     speciality: Infocommunication Technology
+    achievements:
+      - diploma with honors
 
 
 CERTIFICATES:
@@ -41,6 +46,8 @@ CERTIFICATES:
     entry year: 2014
     graduation year: 2015
     course name: CCNA Routing and Switching
+    achievements:
+      - third place in BIT-Cup challenge in the competition "CISCO Network Olympiad" (2015 year)
 
 
 MOOC:
@@ -59,15 +66,16 @@ MOOC:
 
 WORK EXPERIENCE:
   - company: Extmedia
+    company type: hosting provider and domain registrar
     city: Minsk
     country: Belarus
     from: July 2016
     to: present
-    position: Linux System Administrator
+    position: Linux System Engineer
     main activities:
       - full hardware and software maintenance of servers
-      - monitoring and incidents resolvement
-      - creation, configuration and optimisation of software environments for any kind of web projects
+      - monitoring and incidents resolution
+      - creation, configuration and optimization of software environments for any kind of web projects
       - direct communication with clients for trouble resolving and consulting
       - tasks automation with Bash and Python
       - web sites creation for internal needs
@@ -86,7 +94,7 @@ MY FINISHED PROJECTS:
     written in: Javascript, CSS, HTML
     URL: https://github.com/grez911/chiptune2.js
 
-  - description: an enrypted image hosting
+  - description: an encrypted file hosting
     written in: PHP (Smarty), Javascript, CSS, HTML
     URL: https://github.com/grez911/one-time.nl
 
@@ -112,7 +120,7 @@ MY FINISHED PROJECTS:
     - IP and User-Agent blocking
     - SSL certificates installation
     - Jabber bot
-    - other small Bash scripts
+    - many other small Bash scripts
 
 
 PROFESSIONAL SKILLS:
@@ -122,10 +130,12 @@ PROFESSIONAL SKILLS:
     - Arch Linux
     - CentOS
     - Mint
+
   - web servers:
     - Apache
     - nginx
     - Tomcat
+
   - programming and markup languages:
     - Bash
     - Python
@@ -133,56 +143,46 @@ PROFESSIONAL SKILLS:
     - PHP
     - CSS
     - HTML
+
   - version control systems:
     - Git
     - Subversion
+
   - data science:
     - NumPy
     - pandas
     - scikit-learn
     - Keras
+
   - virtualization:
     - LXC
     - Linux-VServer
     - QEMU/KVM
     - VirtualBox
     - Docker
+
   - RAID:
     - mdadm
-    - hardware RAID
+
   - server configuration tools:
     - Puppet
     - Ansible
+
   - backup tools:
     - Bacula
+
   - databases:
     - MySQL
     - MariaDB
     - SQLite
-    - Galera Cluster
-    - PostgreSQL
+
   - firewall:
     - iptables
+
   - load balancing:
     - HAProxy
-    - Ceph
-    - database replication
-    - Lsyncd
-  - monitoring:
-    - Icinga
-    - Graylog
-    - Graphite
-    - collectd
-  - caching:
-    - varnish
-    - Memcached
-    - Redis
+
   - e-mail:
     - Exim
     - Dovecot
     - SpamAssassin
-  - DNS:
-    - PowerDNS
-  - broadcasting:
-    - Airtime
-    - Icecast
