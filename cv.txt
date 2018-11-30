@@ -30,7 +30,7 @@ EDUCATION:
     speciality: Technical Exploitation of Telecommunication Networks
     achievements:
       - first degree diploma in the final stage of the Republican Olympiad in Physics (2010 year)
-      - fellow at the special fund of the President of the Republic of Belarus for social support gifted students (2010 year)
+      - fellow at the special fund of the President of the Republic of Belarus for gifted students (2010 year)
 
   - institution name: Belarusian State Academy of Telecommunications
     entry year: 2013
