@@ -70,8 +70,8 @@ WORK EXPERIENCE:
     city: Minsk
     country: Belarus
     from: July 2016
-    to: present
-    position: Linux System Engineer
+    to: December 2018
+    position: Linux System Administrator
     main activities:
       - full hardware and software maintenance of servers
       - monitoring and incidents resolution
@@ -79,6 +79,19 @@ WORK EXPERIENCE:
       - direct communication with clients for trouble resolving and consulting
       - tasks automation with Bash and Python
       - web sites creation for internal needs
+
+  - company: IDFinance
+    company type: FinTech
+    city: Minsk
+    country: Belarus
+    from: December 2018
+    to: present
+    position: Linux System Administrator
+    main activities:
+      - monitoring and incidents resolution
+      - development of infrastructure
+      - creation, configuration and optimization of software environments
+      - tasks automation with Bash and Python
 
 
 MY FINISHED PROJECTS:
