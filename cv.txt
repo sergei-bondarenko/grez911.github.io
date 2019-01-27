@@ -50,20 +50,6 @@ CERTIFICATES:
       - third place in BIT-Cup challenge in the competition "CISCO Network Olympiad" (2015 year)
 
 
-MOOC:
-  - course name: Machine Learning
-    instructors: Andrew Ng
-    year: 2015
-
-  - course name: Deep Learning
-    instructors: Andrew Ng
-    year: 2018
-
-  - course name: fast.ai
-    instructors: Jeremy Howard, Rachel Thomas
-    year: 2018
-
-
 WORK EXPERIENCE:
   - company: Extmedia
     company type: hosting provider and domain registrar
@@ -89,7 +75,7 @@ WORK EXPERIENCE:
     position: Linux System Administrator
     main activities:
       - monitoring and incidents resolution
-      - development of infrastructure
+      - development of high-loaded and distributed infrastructure
       - creation, configuration and optimization of software environments
       - tasks automation with Bash and Python
 
@@ -146,8 +132,9 @@ PROFESSIONAL SKILLS:
 
   - web servers:
     - Apache
-    - nginx
+    - NGINX
     - Tomcat
+    - GlassFish
 
   - programming and markup languages:
     - Bash
@@ -161,12 +148,6 @@ PROFESSIONAL SKILLS:
     - Git
     - Subversion
 
-  - data science:
-    - NumPy
-    - pandas
-    - scikit-learn
-    - Keras
-
   - virtualization:
     - LXC
     - Linux-VServer
@@ -177,9 +158,11 @@ PROFESSIONAL SKILLS:
   - RAID:
     - mdadm
 
-  - server configuration tools:
+  - automation:
     - Puppet
     - Ansible
+    - Chef
+    - Jenkins
 
   - backup tools:
     - Bacula
@@ -188,6 +171,8 @@ PROFESSIONAL SKILLS:
     - MySQL
     - MariaDB
     - SQLite
+    - MongoDB
+    - Redis
 
   - firewall:
     - iptables
@@ -199,3 +184,16 @@ PROFESSIONAL SKILLS:
     - Exim
     - Dovecot
     - SpamAssassin
+
+  - VPN:
+    - OpenVPN
+    - pptpd
+
+  - VoIP:
+    - Asterisk
+
+  - Monitoring:
+    - Zabbix
+    - Grafana
+    - Icinga
+    - ELK
