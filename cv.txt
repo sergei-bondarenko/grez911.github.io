@@ -154,6 +154,7 @@ PROFESSIONAL SKILLS:
     - QEMU/KVM
     - VirtualBox
     - Docker
+    - AWS
 
   - RAID:
     - mdadm
@@ -197,3 +198,6 @@ PROFESSIONAL SKILLS:
     - Grafana
     - Icinga
     - ELK
+
+  - Management:
+    - Agile
