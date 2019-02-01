@@ -154,6 +154,7 @@ PROFESSIONAL SKILLS:
     - QEMU/KVM
     - VirtualBox
     - Docker
+    - VMware ESXi
     - AWS
 
   - RAID:
